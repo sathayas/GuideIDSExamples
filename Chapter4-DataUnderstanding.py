@@ -44,3 +44,12 @@ plt.show()
 
 # describing various statsitics
 print(X.describe())
+
+
+#
+# SCATTER PLOTS
+#
+
+# plotting petal width vs length
+X.plot.scatter(x='petal width', y='petal length')
+plt.show()
