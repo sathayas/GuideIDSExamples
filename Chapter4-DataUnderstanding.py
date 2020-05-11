@@ -82,10 +82,29 @@ from sklearn.preprocessing import StandardScaler
 #
 
 # defining an normalization object
-normData = StandardScalar()
+normData = StandardScaler()
 
 # fitting the data to the normalization object
 normData.fit(X)
 
 # applying the normalization transformation to the data
 X_norm = normData.transform(X)
+
+# using fit_transform method
+X_norm = StandardScaler().fit_transform(X)
+
+
+#
+# PCA
+#
+
+# applying PCA
+pca = PCA()  # creating a PCA transformation ojbect
+X_pc = pca.fit_transform(X_norm) # fit the data, and get PCs
+
+# proportion of the variance explained
+print(pca.explained_variance_ratio_)
+
+# plotting the first 2 principal compnonents
+plt.scatter(X_pc[:,0], X_pc[:,1], c=y['species'])
+plt.show()
