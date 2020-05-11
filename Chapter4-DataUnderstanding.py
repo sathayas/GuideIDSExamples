@@ -67,3 +67,25 @@ plt.show()
 # scatter plot matrix with different colors for species
 pd.plotting.scatter_matrix(X, c=y['species'])
 plt.show()
+
+
+
+#
+# IMPORTING SCIKIT-LEARN LIBRARIES
+#
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+
+#
+# NORMALIZING IRIS DATA FEATURES
+#
+
+# defining an normalization object
+normData = StandardScalar()
+
+# fitting the data to the normalization object
+normData.fit(X)
+
+# applying the normalization transformation to the data
+X_norm = normData.transform(X)
