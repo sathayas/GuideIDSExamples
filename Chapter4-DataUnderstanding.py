@@ -123,3 +123,21 @@ X_mds = mds.fit_transform(X_norm)
 # plotting the MDS-transformed coordinates
 plt.scatter(X_mds[:,0], X_mds[:,1], c=y['species'])
 plt.show()
+
+
+#
+# PARALLEL COORDINATES PLOT
+#
+
+Xy = pd.concat([X,y], axis=1)
+pd.plotting.parallel_coordinates(Xy,'species')
+plt.show()
+
+
+#
+# CORRELATION
+#
+
+import scipy as sp
+
+print()
