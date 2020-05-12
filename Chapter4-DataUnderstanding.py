@@ -108,3 +108,18 @@ print(pca.explained_variance_ratio_)
 # plotting the first 2 principal compnonents
 plt.scatter(X_pc[:,0], X_pc[:,1], c=y['species'])
 plt.show()
+
+
+#
+# MDS
+#
+
+from sklearn.manifold import MDS
+
+# applying MDS
+mds = MDS()
+X_mds = mds.fit_transform(X_norm)
+
+# plotting the MDS-transformed coordinates
+plt.scatter(X_mds[:,0], X_mds[:,1], c=y['species'])
+plt.show()
