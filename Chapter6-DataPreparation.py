@@ -27,3 +27,31 @@ X_test_imp = imp_mean.transform(X_test)
 imp_mode = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
 S_train_imp = imp_mode.fit_transform(S_train)
 S_test_imp = imp_mode.transform(S_test)
+
+
+#
+# NORMALIZATION
+#
+
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
+# loading the Iris data
+iris = datasets.load_iris()
+X = iris.data  # array for the features
+y = iris.target  # array for the target
+feature_names = iris.feature_names   # feature names
+target_names = iris.target_names   # target names
+
+# spliting the data into training and testing data sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.333,
+                                                    random_state=2020)
+
+# z-score normalization
+normZ = StandardScaler()
+X_train_Z = normZ.fit_transform(X_train)
+X_test_Z = normZ.transform(X_test)
+
+# applying the normalization transformation to the data
+X_norm = normData.transform(X)
