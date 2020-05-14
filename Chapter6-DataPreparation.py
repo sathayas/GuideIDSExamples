@@ -8,15 +8,15 @@ from sklearn.impute import SimpleImputer
 
 # Creating toy data sets (numerical)
 X_train = pd.DataFrame()
-X_train['X'] = [3, 2, 1, 4, 5, np.nan, np.nan, 5]
+X_train['X'] = [3, 2, 1, 4, 5, np.nan, np.nan, 5, 2]
 X_test = pd.DataFrame()
-X_test['X'] = [3, 2, np.nan, 4, np.nan, np.nan, 1, np.nan]
+X_test['X'] = [3, np.nan, np.nan]
 
 # Creating toy data sets (categorical)
 S_train = pd.DataFrame()
-S_train['S'] = ['Hi', 'Med', 'Med', 'Hi', 'Low', 'Med', np.nan, 'Med']
+S_train['S'] = ['Hi', 'Med', 'Med', 'Hi', 'Low', 'Med', np.nan, 'Med', 'Hi']
 S_test = pd.DataFrame()
-S_test['S'] = ['Hi', np.nan, np.nan, 'Hi', 'Med', np.nan, 'Low']
+S_test['S'] = [np.nan, np.nan, 'Low']
 
 # Imputing numerical data with mean
 imp_mean = SimpleImputer(missing_values=np.nan, strategy='mean')
