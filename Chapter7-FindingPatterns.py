@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import AgglomerativeClustering, KMeans
 
 # Loading the iris data
 iris = datasets.load_iris()
@@ -37,4 +37,36 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 
 D = linkage(X_norm, 'ward')
 dn = dendrogram(D)
+plt.show()
+
+
+#
+# K-MEANS CLUSTERING
+#
+
+# K-means clustering
+km = KMeans(n_clusters=3)  # defining the clustering object
+km.fit(X)  # actually fitting the data
+y_clus = km.labels_   # clustering info resulting from K-means
+
+# Plotting the clusters
+plt.scatter(X_norm[:,3],X_norm[:,0],c=y_clus,marker='+')
+plt.show()
+
+
+#
+# ELBOW METHOD
+#
+
+SSE = []
+for iClus in range(1,21):
+    # K-means clustering
+    km = KMeans(n_clusters=iClus)  # K-means with a given number of clusters
+    km.fit(X_norm)  # fitting the principal components
+    SSE.append(km.inertia_) # recording the sum of square distances
+
+# plotting the sum of square distance (a.k.a., inertia)
+plt.plot(np.arange(1,21),SSE,marker = "o")
+plt.xlabel('Number of clusters')
+plt.ylabel('Inertia')
 plt.show()
