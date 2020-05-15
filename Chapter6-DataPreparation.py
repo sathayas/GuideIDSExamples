@@ -34,7 +34,7 @@ S_test_imp = imp_mode.transform(S_test)
 #
 
 from sklearn import datasets
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split
 
 # loading the Iris data
@@ -53,5 +53,7 @@ normZ = StandardScaler()
 X_train_Z = normZ.fit_transform(X_train)
 X_test_Z = normZ.transform(X_test)
 
-# applying the normalization transformation to the data
-X_norm = normData.transform(X)
+# min-max normalization
+normMinMax = MinMaxScaler()
+X_train_MinMax = normMinMax.fit_transform(X_train)
+X_test_MinMax = normMinMax.transform(X_test)
