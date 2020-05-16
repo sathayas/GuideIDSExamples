@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import AgglomerativeClustering, KMeans
+from sklearn.cluster import AgglomerativeClustering, KMeans, DBSCAN
 
 # Loading the iris data
 iris = datasets.load_iris()
@@ -69,4 +69,26 @@ for iClus in range(1,21):
 plt.plot(np.arange(1,21),SSE,marker = "o")
 plt.xlabel('Number of clusters')
 plt.ylabel('Inertia')
+plt.show()
+
+
+#
+# DBSCAN
+#
+
+# DBSCAN clustering
+dbscan = DBSCAN()  # defining the clustering object
+dbscan.fit(X_norm)  # fitting the data
+y_clus = dbscan.labels_   # cluster labels
+indCore = dbscan.core_sample_indices_   # indices of core points
+
+# plotting non-noise points
+plt.scatter(X_norm[y_clus>0,3],X_norm[y_clus>0,0], c=y_clus[y_clus>0],
+            marker='o', s=10)
+# plotting core points
+plt.scatter(X_norm[indCore,3], X_norm[indCore,0],c=y_clus[indCore],
+            marker='o', s=100)
+# plotting noise points
+plt.scatter(X_norm[y_clus==-1,3],X_norm[y_clus==-1,0], c='r',
+            marker='o', s=10)
 plt.show()
