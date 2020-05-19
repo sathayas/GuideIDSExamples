@@ -37,3 +37,22 @@ print(classification_report(y_test, y_pred,
 plt.figure(figsize=[4,4])
 plot_tree(dt, feature_names=feature_names, class_names=target_names)
 plt.show()
+
+
+#
+# LINEAR REGRESSION
+#
+from sklearn.linear_model import LinearRegression
+
+# Target is petal width
+y = iris.data[:,3]
+# All the other variables are input features
+X = iris.data[:,:3]
+
+# linear regression learner
+reg = LinearRegression().fit(X,y)
+
+# Information about the regression model
+print(reg.score(X,y))   # R-square
+print(reg.coef_)   # Regression coefficients
+print(reg.intercept_)  # and the intercept
