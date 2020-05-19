@@ -56,3 +56,6 @@ reg = LinearRegression().fit(X,y)
 print(reg.score(X,y))   # R-square
 print(reg.coef_)   # Regression coefficients
 print(reg.intercept_)  # and the intercept
+
+# Observed vs predicted
+y_pred = reg.predict(X)
