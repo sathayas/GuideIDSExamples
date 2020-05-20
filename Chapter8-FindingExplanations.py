@@ -57,5 +57,12 @@ print(reg.score(X,y))   # R-square
 print(reg.coef_)   # Regression coefficients
 print(reg.intercept_)  # and the intercept
 
-# Observed vs predicted
+# Observed vs predicted plot
 y_pred = reg.predict(X)
+plt.plot(X[:,0], y, 'b.', label='observed')
+plt.plot([X[:,0].min(), X[:,0].max()], [y_pred.min(), y_pred.max()],
+         'r-', label='predicted')
+plt.xlabel('Sepal length')
+plt.ylabel('Petal width')
+plt.legend()
+plt.show()
