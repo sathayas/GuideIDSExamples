@@ -32,8 +32,7 @@ y_pred = kNN.predict(X_test)
 
 # classifier performance
 print(confusion_matrix(y_test,y_pred))
-print(classification_report(y_test, y_pred,
-                            target_names=target_names))
+print(classification_report(y_test, y_pred, target_names=target_names))
 
 
 #
@@ -44,9 +43,9 @@ from sklearn.neural_network import MLPClassifier
 
 # Multi-layer preceptron classifier object
 #     stochastic gradient descent solver
-#     a hidden layer with 3 neurons
+#     two hidden layers with 4 and 2 neurons, respectively
 mlp = MLPClassifier(solver='sgd',
-                    hidden_layer_sizes=(3), random_state=2020)
+                    hidden_layer_sizes=(4, 2), random_state=2020)
 
 # training on the training data
 mlp.fit(X_train,y_train)
@@ -56,5 +55,51 @@ y_pred = mlp.predict(X_test)
 
 # classifier performance
 print(confusion_matrix(y_test,y_pred))
-print(classification_report(y_test, y_pred,
-                            target_names=target_names))
+print(classification_report(y_test, y_pred, target_names=target_names))
+
+
+#
+# SUPPORT VECTOR MACHINE CLASSIFIER
+#
+
+from sklearn.svm import SVC
+
+# SVM classifier object -- linear kernel and C=0.1
+svc = SVC(kernel='linear', C=0.1)
+
+# training on the training data
+svc.fit(X_train,y_train)
+
+# predicted classes
+y_pred = svc.predict(X_test)   # predicted class
+
+# classifier performance
+print(confusion_matrix(y_test,y_pred))
+print(classification_report(y_test, y_pred, target_names=target_names))
+
+
+#
+# SUPPORT VECTOR REGRESSION
+#
+from sklearn.svm import SVR
+from sklearn.metrics import r2_score
+
+# SVM regression object -- linear kernel and C=0.1
+svr = SVR(kernel='linear', C=0.1)
+
+# training on the petal width as the target, features = all other variables
+svr.fit(X_train[:,:3],X_train[:,3])
+
+# predicted outcomes
+y_pred = svr.predict(X_test[:,:3])
+
+# R-squared
+print(r2_score(X_test[:,3], y_pred))
+
+# plotting observed vs predicted (sepal length on x-axis)
+plt.plot(X_test[:,0], X_test[:,3],'b.', label='observed')
+plt.plot(X_test[:,0], y_pred, 'r.', label='predicted')
+plt.xlabel(feature_names[0])
+plt.ylabel(feature_names[3])
+plt.legend()
+plt.show()
