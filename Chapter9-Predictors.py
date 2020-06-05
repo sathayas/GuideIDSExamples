@@ -103,3 +103,31 @@ plt.xlabel(feature_names[0])
 plt.ylabel(feature_names[3])
 plt.legend()
 plt.show()
+
+
+#
+# RANDOM FOREST CLASSIFIER
+#
+from sklearn.ensemble import RandomForestClassifier
+
+# random forest classifier object
+#    criterion is based on entropy
+#    100 trees
+#    minimum leaf size = 3
+#    max depth of 4
+rf = RandomForestClassifier(criterion='entropy',
+                            n_estimators = 100,
+                            min_samples_leaf = 3,
+                            max_depth = 4,
+                            random_state=2020)
+
+# training on the training data
+rf.fit(X_train,y_train)
+
+# prediction based on the testing data
+y_pred = rf.predict(X_test)
+
+# evaluating the classifier performance
+print(confusion_matrix(y_test,y_pred))
+print(classification_report(y_test, y_pred,
+                            target_names=target_names))
