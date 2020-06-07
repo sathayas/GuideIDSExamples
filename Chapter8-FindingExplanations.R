@@ -23,3 +23,31 @@ table(predict(iris.nbayes,iris[-iris.train,],type="class"),
       iris[-iris.train,"Species"])
 
 print(iris.nbayes)
+
+
+#
+# REGRESSION
+#
+
+# linear regression
+iris.lm <- lm(iris$Petal.Width ~ iris$Sepal.Length
+              + iris$Sepal.Width + iris$Petal.Length)
+summary(iris.lm)
+
+# quadratic regression
+iris.lm <- lm(iris$Petal.Width ~ iris$Petal.Length +
+              I(iris$Petal.Length^2))
+              summary(iris.lm)
+
+# ridge regression
+library(MASS)
+iris.rlm <- rlm(iris$Petal.Width ~ iris$Sepal.Length
+                + iris$Sepal.Width + iris$Petal.Length)
+summary(iris.rlm)
+
+# ridge regression with Tukey's biweight
+iris.rlm <- rlm(iris$Petal.Width ~ iris$Sepal.Length
+                + iris$Sepal.Width + iris$Petal.Length,
+                method="MM")
+summary(iris.rlm)
+plot(iris.rlm$w)
