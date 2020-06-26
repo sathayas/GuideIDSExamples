@@ -37,7 +37,7 @@ summary(iris.lm)
 # quadratic regression
 iris.lm <- lm(iris$Petal.Width ~ iris$Petal.Length +
               I(iris$Petal.Length^2))
-              summary(iris.lm)
+summary(iris.lm)
 
 # ridge regression
 library(MASS)
