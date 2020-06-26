@@ -40,3 +40,26 @@ iris.nn <- neuralnet(Species + Sepal.Length ~
                      Sepal.Width + Petal.Length + Petal.Width, x,
                      hidden=c(3))
 plot(iris.nn)
+
+# calculating predicted on the testing data
+y <- iris.test
+y <- y[-5]
+y <- y[-1]
+y.out <- compute(iris.nn,y)
+
+# calculating squared errors
+y.sqerr <- (y[1] - y.out$net.result[,2])^2
+
+
+#
+# SUPPORT VECTOR MACHINES
+#
+
+# svm classifier
+library(e1071)
+iris.svm <- svm(Species ~ ., data = iris.training)
+table(predict(iris.svm,iris.test[1:4]),iris.test[,5])
+
+# svm regression
+iris.svm <- svm(Petal.Width ~ ., data = iris.training)
+sqerr <- (predict(iris.svm,iris.test[-4])-iris.test[4])^2
