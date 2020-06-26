@@ -63,3 +63,12 @@ table(predict(iris.svm,iris.test[1:4]),iris.test[,5])
 # svm regression
 iris.svm <- svm(Petal.Width ~ ., data = iris.training)
 sqerr <- (predict(iris.svm,iris.test[-4])-iris.test[4])^2
+
+
+#
+# RANDOM FOREST
+#
+
+library(randomForest)
+iris.rf <- randomForest(Species ~., iris.training)
+table(predict(iris.rf,iris.test[1:4]),iris.test[,5])
